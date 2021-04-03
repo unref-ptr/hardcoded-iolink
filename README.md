@@ -13,7 +13,7 @@ Note: only tested with TIOL-111. IF using any other transciever the functionalit
 ## Limitations
 
 * The IOL Device does not include use of Parameters, Events or DS. 
-* IF the device comm is interrupted, it requires to reset the SW does not implement the deivce mode handler.
+* IF the device comm is interrupted, it requires to reset the SW as it does not implement the device mode handler.
 * Blocking the main task with any other task might interrupt the program, as IO-Link expects a maxmimum device response time of 10/COM where COM is any of the baudrates for IO-Link.
 
 
@@ -25,6 +25,6 @@ You are welcome to improve the software and include features that are not part o
 
 #### Further information:
 
-Just did this as an experiment to check how much can be achievd without implementing the complete spec. More of a simple and lightweight stack. <br>
-For more informaiton RTFM (i.e. the IO-Link specification ) ;) <br> 
+Just did this as an experiment to check how much can be achieved without implementing the complete spec. More of a simple and lightweight stack. <br>
+For more informaiton RTFM (i.e. the IO-Link specification ) ;)  
 
