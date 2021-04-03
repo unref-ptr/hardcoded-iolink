@@ -194,7 +194,11 @@ void hardcode_iolink::prepareMessage(uint8_t od_size)
 }
 
 //Send confirmation when IO-Link master does a
-//write request
+//write request, as this hardcoded device
+//does not have PDIn, any write request will 
+//involve sending just one byte (CKT)
+//If required to add PD IN, the checksum 6 type 
+//Has to be added ;)
 void hardcode_iolink::sendOK()
 {
   txBuffer[0] = 0x2D;
@@ -339,7 +343,14 @@ void hardcode_iolink::task()
       }
       break;
     case wait_valid_frame:
-      {
+	/*
+	Using COM2, for this reason
+	the Arduino will recieve garbage as
+	the IO-L Master will send the wakeup
+	message (0xA2,0x00) at COM3 first.
+	With this state, the device waits until
+	it detects the first valid frame 0xA2 = MC (Read Page Channel, Min Cycle Time)
+	*/
         if (new_ioLink_byte())
         {
           uint8_t rx_byte = read_ioLink_byte();
@@ -349,7 +360,6 @@ void hardcode_iolink::task()
             checkNewIOLinkMaster_Frame(rx_byte);
           }
         }
-      }
       break;
     case run_mode:
       if (new_ioLink_byte())
@@ -363,6 +373,8 @@ void hardcode_iolink::task()
         {
           if (byteCount == 3)
           {
+	    //from the system command values of the 
+	   //specification
             if (rxBuffer[2] == 0x9A)
             {
               deviceMode = preoperate;
