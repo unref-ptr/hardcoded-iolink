@@ -28,3 +28,5 @@ You are welcome to improve the software and include features that are not part o
 Just did this as an experiment to check how much can be achieved without implementing the complete spec. More of a simple and lightweight stack. <br>
 For more informaiton RTFM (i.e. the IO-Link specification ) ;)  
 
+Update: This repository is deprecated and superseded by [lwIOLink](https://github.com/unref-ptr/lwIOLink) , a lightweight IOLink device library.
+
